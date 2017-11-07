@@ -39,6 +39,18 @@ function getFollowingData() {
         });
 }
 
+function getDirectMessages() {
+    return T.get(`direct_messages.json?count=${numberOfInfo}`)
+        .catch(err => {
+            console.log('caught error', err.stack);
+        })
+        .then(result => {
+            return result.data;
+        });
+}
+
+
+
 //const tweets = getTwitterData();
 
 app.use('/static', express.static('public'));
@@ -46,10 +58,12 @@ app.set('view engine', 'pug');
 
 app.get('/', async function(req, res) {
     let dataObj = {};
-    const data = await Promise.all([getProfileData(), getTweetData(), getFollowingData()]);
+    const data = await Promise.all([getProfileData(), getTweetData(), getFollowingData(), getDirectMessages()]);
     dataObj.profile = data[0];
     dataObj.tweets = data[1];
     dataObj.followers = data[2];
+    dataObj.messages = data[3];
+    console.log(dataObj.messages[1].text);
     res.render('index', {dataObj});
 });
 
