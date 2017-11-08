@@ -72,7 +72,7 @@ io.on('connection', client => {
     client.on('refreshData', data => {
         T.post('statuses/update', { status: data })
             .catch(err => {
-                console.log('caught error', err.stack);
+                next(err);
             })
             .then(result => {
                 result.data.timelineDate = formatDate(result.data.created_at);
@@ -117,7 +117,7 @@ server.listen(3000, () => {
 function getAuthenticatedUser() {
     T.get('account/verify_credentials', { skip_status: true })
         .catch(err => {
-            console.log('caught error', err.stack);
+            next(err);
         })
         .then(result => {
             if (result.data) {
@@ -133,7 +133,7 @@ function getAuthenticatedUser() {
 function getTweetData(screenName) {
     return T.get(`statuses/user_timeline.json?screen_name=${screenName}&count=${numberOfInfo}`)
         .catch(err => {
-            console.log('caught error', err.stack);
+            next(err);
         })
         .then(result => {
             return result.data;
@@ -144,7 +144,7 @@ function getTweetData(screenName) {
 function getProfileData(screenName, userId) {
     return T.get(`users/show.json?screen_name=${screenName}&user_id=${userId}`)
         .catch(err => {
-            console.log('caught error', err.stack);
+            next(err);
         })
         .then(result => {
             return result.data;
@@ -155,7 +155,7 @@ function getProfileData(screenName, userId) {
 function getFollowingData(screenName) {
     return T.get(`friends/list.json?cursor=-1&screen_name=${screenName}&skip_status=true&include_user_entities=false&count=${numberOfInfo}`)
         .catch(err => {
-            console.log('caught error', err.stack);
+            next(err);
         })
         .then(result => {
             return result.data;
@@ -166,7 +166,7 @@ function getFollowingData(screenName) {
 function getDirectMessages() {
     return T.get(`direct_messages.json?count=${numberOfInfo}`)
         .catch(err => {
-            console.log('caught error', err.stack);
+            next(err);
         })
         .then(result => {
             return result.data;
