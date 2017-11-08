@@ -1,0 +1,53 @@
+.grid-33
+    .app--section
+        ul.app--user--list
+            li
+                .circle--fluid
+                    .circle--fluid--cell.circle--fluid--primary
+                        a.app--tweet--author
+                            .app--avatar(style=`background-image: url(${dataObj.followers.users[0].profile_image_url})`)
+                                img(src='/static/images/f-spore.png')
+                            h4= dataObj.followers.users[0].name
+                            p @#{dataObj.followers.users[0].screen_name}
+                    .circle--fluid--cell
+                        a.button.button-text Unfollow
+            li
+                .circle--fluid
+                    .circle--fluid--cell.circle--fluid--primary
+                        a.app--tweet--author
+                            .app--avatar(style=`background-image: url(${dataObj.followers.users[1].profile_image_url})`)
+                                img(src='/static/images/f-spore.png')
+                            h4= dataObj.followers.users[1].name
+                            p @#{dataObj.followers.users[1].screen_name}
+                    .circle--fluid--cell
+                        a.button.button-text Unfollow
+            li
+                .circle--fluid
+                    .circle--fluid--cell.circle--fluid--primary
+                        a.app--tweet--author
+                            .app--avatar(style=`background-image: url(${dataObj.followers.users[2].profile_image_url})`)
+                                img(src='/static/images/f-spore.png')
+                            h4= dataObj.followers.users[2].name
+                            p @#{dataObj.followers.users[2].screen_name}
+                    .circle--fluid--cell
+                        a.button.button-text Unfollow
+            li
+                .circle--fluid
+                    .circle--fluid--cell.circle--fluid--primary
+                        a.app--tweet--author
+                            .app--avatar(style=`background-image: url(${dataObj.followers.users[3].profile_image_url})`)
+                                img(src='/static/images/f-spore.png')
+                            h4= dataObj.followers.users[3].name
+                            p @#{dataObj.followers.users[3].screen_name}
+                    .circle--fluid--cell
+                        a.button Follow
+            li
+                .circle--fluid
+                    .circle--fluid--cell.circle--fluid--primary
+                        a.app--tweet--author
+                            .app--avatar(style=`background-image: url(${dataObj.followers.users[4].profile_image_url})`)
+                                img(src='/static/images/f-spore.png')
+                            h4= dataObj.followers.users[4].name
+                            p @#{dataObj.followers.users[4].screen_name}
+                    .circle--fluid--cell
+                        a.button.button-text Unfollow
