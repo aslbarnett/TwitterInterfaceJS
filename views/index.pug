@@ -40,15 +40,15 @@ html(lang='en')
                                 li
                                     a Sign Out
         .app--tweet
-            form
+            form(action='/', method='post')
                 .circle--fluid
                     .circle--fluid--cell.circle--fluid--primary.align-bottom.app--tweet--post
-                        .app--avatar(style='background-image: url(/static/images/m-spore.png)')
+                        .app--avatar(style=`background-image: url(${dataObj.profile.profile_image_url})`)
                             img(src='/static/images/m-spore.png')
-                        textarea#tweet-textarea.circle--textarea--input(placeholder="What's happening?")
+                        textarea#tweet-textarea.circle--textarea--input(placeholder="What's happening?", name='tweetEntry')
                         strong#tweet-char.app--tweet--char 140
                     .circle--fluid--cell.align-bottom
-                        button.button-primary Tweet
+                        button(type='submit').button-primary Tweet
         .bounds.app--body
             .app--section--header
                 .grid-33
@@ -66,7 +66,7 @@ html(lang='en')
                     ul.app--tweet--list
                         each tweet in dataObj.tweets
                             li
-                                strong.app--tweet--timestamp 4h
+                                strong.app--tweet--timestamp= tweet.timelineDate
                                 a.app--tweet--author
                                     .app--avatar(style=`background-image: url(${dataObj.profile.profile_image_url})`)
                                         img(src='/static/images/f-spore.png')
@@ -158,31 +158,30 @@ html(lang='en')
                         li
                             h3
                                 | Conversation with
-                                a Jill Spore
+                                a= dataObj.messages[0].sender.name
                             ul.app--message--conversation
                                 li.app--message
-                                    .app--avatar(style='background-image: url(/static/images/f-spore.png)')
+                                    .app--avatar(style=`background-image: url(${dataObj.messages[0].sender.profile_image_url})`)
                                         img(src='/static/images/f-spore.png')
-                                    p.app--message--text How are things?
-                                    p.app--message--timestamp 3 hours ago
+                                    p.app--message--text= dataObj.messages[0].text
+                                    p.app--message--timestamp= dataObj.messageDates[0]
                                 li.app--message--me
-                                    .app--avatar(style='background-image: url(/static/images/m-spore.png)')
+                                    .app--avatar(style=`background-image: url(${dataObj.messages[1].recipient.profile_image_url})`)
                                         img(src='/static/images/m-spore.png')
-                                    p.app--message--text
-                                        | Great! How about you? Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    p.app--message--timestamp 2 hours ago
+                                    p.app--message--text= dataObj.messages[1].text
+                                    p.app--message--timestamp= dataObj.messageDates[1]
                                 li.app--message
-                                    .app--avatar(style='background-image: url(/static/images/f-spore.png)')
+                                    .app--avatar(style=`background-image: url(${dataObj.messages[2].sender.profile_image_url})`)
                                         img(src='/static/images/f-spore.png')
-                                    p.app--message--text Fantastic! You wanna grab lunch?
-                                    p.app--message--timestamp 2 hours ago
+                                    p.app--message--text= dataObj.messages[2].text
+                                    p.app--message--timestamp= dataObj.messageDates[2]
                                 li.app--message--me
-                                    .app--avatar(style='background-image: url(/static/images/m-spore.png)')
+                                    .app--avatar(style=`background-image: url(${dataObj.messages[3].recipient.profile_image_url})`)
                                         img(src='/static/images/m-spore.png')
-                                    p.app--message--text Totes mcgotes. How about Mackey's?
-                                    p.app--message--timestamp 1 hour ago
+                                    p.app--message--text= dataObj.messages[3].text
+                                    p.app--message--timestamp= dataObj.messageDates[3]
                                 li.app--message
-                                    .app--avatar(style='background-image: url(/static/images/f-spore.png)')
+                                    .app--avatar(style=`background-image: url(${dataObj.messages[4].sender.profile_image_url})`)
                                         img(src='/static/images/f-spore.png')
-                                    p.app--message--text Aww yeah.. I'm craving a Triple Quarter Mack!
-                                    p.app--message--timestamp 1 hour ago
+                                    p.app--message--text= dataObj.messages[4].text
+                                    p.app--message--timestamp= dataObj.messageDates[4]

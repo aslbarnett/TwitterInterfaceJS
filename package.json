@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "pug": "^2.0.0-rc.4",
     "request": "^2.83.0",
+    "time-ago": "^0.1.0",
     "twit": "^2.2.9"
   }
 }
